@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "first-react-native-project",
-    "slug": "first-react-native-project",
+    "name": "First-React-Native-Web-Project",
+    "slug": "First-React-Native-Web-Project",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
