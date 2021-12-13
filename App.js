@@ -29,40 +29,50 @@ export default function App() {
     setNotesList([{ title: currentNote }, ...notesList]);
   };
 
-  console.log("CURRENT NOTE ", currentNote);
-  console.log("NOTES LIST ", JSON.stringify(notesList));
+  // console.log("CURRENT NOTE ", currentNote);
+  // console.log("NOTES LIST ", JSON.stringify(notesList));
   return (
     <View style={styles.container}>
-      <Text>Save a note</Text>
-      <View style={styles.inputContainer}>
-        <TextInput value={currentNote} onChangeText={inputChangeHandler} />
-        <Button title="save" onPress={saveNoteHandler} />
+      <View style={styles.content}>
+        <Text>Save a note</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={currentNote}
+            onChangeText={inputChangeHandler}
+            style={styles.input}
+          />
+          <Button title="save" onPress={saveNoteHandler} />
+        </View>
+        <FlatList
+          style={{ flexGrow: 0 }}
+          keyExtractor={(item) => item.title}
+          contentContainerStyle={styles.flatList}
+          data={notesList}
+          renderItem={(itemData) => <ListItem title={itemData.item.title} />}
+        />
       </View>
-      <FlatList
-        keyExtractor={(item) => item.title}
-        style={{ width: "100%" }}
-        contentContainerStyle={styles.flatList}
-        data={notesList}
-        renderItem={(itemData) => <ListItem title={itemData.item.title} />}
-      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    flexDirection: "row",
-    borderWidth: 2,
-  },
   container: {
     flex: 1,
-    height: Platform.OS === "web" ? "100vh" : "100%",
-
     backgroundColor: "darkgrey",
     alignItems: "center",
     justifyContent: "center",
   },
+  input: {
+    minWidth: 150,
+  },
+  content: {
+    // height: 100,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    borderWidth: 3,
+  },
   flatList: {
-    justifyContent: "center",
+    alignItems: "center",
   },
 });
